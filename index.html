@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>12.05.13</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+	<link href="css/lotl.css" rel="stylesheet" type="text/css"/>
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.animate-colors-min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.flippy.min.js"></script>
+	<script>
+	var i = 0;
+	var setIntervalId = setInterval(function() { 
+		++i;
+		if(i > 2) i=0;
+		$('#posterholder').fadeOut(1000, function () {
+			$('#posterholder').html("<a href=\"javascript: flip()\"><img class=\"grayscale img-responsive center-block shadow\" id=\"poster\" src=\"img/image"+ i + ".png\" height=\"90%\" alt=\"Lighting of the Lawn Poster\"/></a>");
+			if (i === 0) {
+				$('body').animate({backgroundColor: '#994444'});
+			} else if (i === 1) {
+				$('body').animate({backgroundColor: '#45775A'});
+			} else {
+				$('body').animate({backgroundColor: '#eaeaea'});
+			}
+			$('#posterholder').fadeIn(1000);
+		});
+	}, 10000);
+
+	function flip() {
+		$(".flipbox").flippy({
+			duration: "500",
+			verso: "<style>.embed-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; max-width: 100%; height: auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='http://www.youtube.com/embed/i61nN6eYLmM' frameborder='0' allowfullscreen></iframe></div>"
+		});
+		clearInterval(setIntervalId);
+	}
+	var dateFuture1 = new Date(2013,11,5,19,00,00);
+	function GetCount (ddate) {
+
+	dateNow = new Date();	//grab current date
+	amount = ddate.getTime() - dateNow.getTime();	//calc milliseconds between dates
+	delete dateNow;
+
+	// if time is already past
+	if(amount < 0){
+	}
+	// else date is still good
+	else{
+		weeks=0;days=0;hours=0;mins=0;secs=0;out="";dateVal="";
+
+		amount = Math.floor(amount/1000);//kill the "milliseconds" so just secs
+
+		days=Math.floor(amount/86400);//days
+		amount=amount%86400;
+
+		hours=Math.floor(amount/3600);//hours
+		amount=amount%3600;
+
+		mins=Math.floor(amount/60);//minutes
+		amount=amount%60;
+
+		secs=Math.floor(amount);//seconds
+
+		if(days >= 0){out = days; dateVal = ((days==1)?"DAY":"DAYS");}
+		document.getElementById('daysNum').innerHTML=out+ "\n";
+		document.getElementById('daysVal').innerHTML=dateVal;		    
+		if(hours >= 0){out = hours; dateVal = ((hours==1)?"HOUR":"HOURS");}
+		document.getElementById('hoursNum').innerHTML=out + "\n";
+		document.getElementById('hoursVal').innerHTML=dateVal;
+		out = mins;
+		dateVal = ((mins==1)?"MINUTE":"MINUTES");
+		document.getElementById('minutesNum').innerHTML=out+ "\n";
+		document.getElementById('minutesVal').innerHTML=dateVal;
+		out = secs
+		dateVal = ((secs==1)?"SECOND":"SECONDS");
+		document.getElementById('secondsNum').innerHTML=out+ "\n";
+		document.getElementById('secondsVal').innerHTML=dateVal;
+		//out = out.substr(0,out.length-2);
+		setTimeout(function(){GetCount(ddate)}, 1000);
+	}
+}
+
+window.onload = function () {
+	GetCount(dateFuture1);
+};
+</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-45469350-1', 'uva2014.com');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">The Countdown to LOTL</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="#about">About</a></li>
+				<li><a href="#wwp">Our Philanthropy</a></li>
+				<li><a href="https://securelb.imodules.com/s/1535/customform/index.aspx?sid=1535&gid=16&pgid=3175&cid=5501" target="_blank">Give To Our Cause</a></li>
+				<li><a href="program.pdf">Event Program</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+	<div class="flipbox-container container">
+		<div class="row center-block light-fixed">
+			<a href="https://securelb.imodules.com/s/1535/customform/index.aspx?sid=1535&gid=16&pgid=3175&cid=5501" class="btn btn-primary btn-lg center-block ww-btn shadow" role="button" target="_blank">Give to Wounded Warrior Project</a><br>
+			<div class="flipbox center-block">
+				<div class="center-block" id="posterholder">
+					<a href="javascript: flip()" alt="Click me!">
+						<img class="grayscale img-responsive center-block shadow" id="poster" src="img/image0.png" alt="Lighting of the Lawn Poster"/>
+					</a>
+				</div>
+				<table id="countdown1" class="hidden-xs hidden-sm">
+					<tbody>
+						<tr class="countdown-num">
+							<td id="daysNum"></td>
+						</tr>
+						<tr class="countdown-date-vals">
+							<td id="daysVal"></td>
+						</tr>
+						<tr class="countdown-num">
+							<td id="hoursNum"></td>
+						</tr>
+						<tr class="countdown-date-vals">
+							<td id="hoursVal"></td>
+						</tr>
+					</tbody>
+				</table>
+				<table id="countdown2" class="hidden-xs hidden-sm">
+					<tbody>
+						<tr class="countdown-num">
+							<td id="minutesNum"></td>
+						</tr>
+						<tr class="countdown-date-vals">
+							<td id="minutesVal"></td>
+						</tr>
+						<tr class="countdown-num">
+							<td id="secondsNum"></td>
+						</tr>
+						<tr class="countdown-date-vals">
+							<td id="secondsVal"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row" id="about">
+			<div class="panel panel-primary shadow">
+				<div class="panel-heading">
+					<h1 class="panel-title"><img src="img/lighthoriz.png" /> Lighting of the Lawn <img src="img/lighthoriz.png" /></h1>
+				</div>
+				<div class="panel-body">
+					Lighting of the Lawn is an annual event that takes place at the end of the fall semester and aims to bring together students, faculty and the community of Charlottesville. The event, which fosters a sense of community, features performances by a cappella groups; a chance for students, faculty, staff, and the Charlottesville community to mingle and enjoy festive snacks and drinks, and a reading of the Fourth Year Class Poem. The event culminates with the actual Lighting of the Lawn Ceremony, in which thousands of lights are lit up, illuminating the Rotunda and the Lawn and ushering in the holiday season.<br><br>
+
+					The occasion was conceived in 2001 in the melancholy following September 11th in an effort to bring together the community to heal and reflect. Lighting of the Lawn, however, is not a time of sorrow. Rather, it is a time to reflect on friendships amongst us at present, a time to inspire hope through one another, and a time to celebrate the wonderful community which we call home. It is these things that the lights celebrate. This year, we will celebrate the 13th Annual Lighting of the Lawn on <strong>Thursday, December 5th, 2013.</strong>
+				</div>
+			</div>
+		</div>
+		<div class="row" id="wwp">
+			<div class="panel panel-primary shadow">
+				<div class="panel-heading">
+					<h1 class="panel-title"><img src="img/lighthoriz.png" /> Our Philanthropy: Wounded Warrior Project <img src="img/lighthoriz.png" /></h1>
+				</div>
+				<div class="panel-body">
+					<blockquote>
+						<p>"Our true heroes don't act, sing, or play sports. They protect America's freedom."</p>
+						<small>Author unknown</small>
+					</blockquote>
+
+					With this quote in mind, we are excited to announce that funds raised at the 2013 Lighting of the Lawn will be donated to <strong><a href="http://www.woundedwarriorproject.org/">Wounded Warrior Project</strong></a>, a national nonprofit organization. Founded in 2002, Wounded Warrior Project offers a variety of programs, services, and events for wounded military veterans and service members of all military actions following the events of September 11, 2001. Support services are provided to the individuals physically, mentally and or emotionally wounded while serving their country on or after September 11 and their families. We have chosen to support this organization because Lighting of the Lawn was started in 2001 with the hope and goal of bringing the community together "to appreciate all they had" after the terrorist attacks on September 11th. <br><br>
+
+					Wounded Warrior's vision is to "foster the most successful, well-adjusted generation of wounded service members in our nation's history." Through its mission, "to honor and empower wounded soldiers," Wounded Warrior operates within a culture of teamwork and a focus on five core values: fun, integrity, loyalty, innovation, and service.<br><br>
+
+					Since 2002 an estimated 320,000 armed services members have experienced mild traumatic brain injuries and an estimated 400,000 warriors suffer from Post-traumatic Stress Disorder (PTSD). Wounded Warrior helps these wounded soldiers and their families with whatever life challenges they may face.  The interactive programs, intended to help heal the mind, include outdoor rehabilitative retreats, peer support, and professional services. Specific activities provide warriors with the tools to maintain healthy, meaningful relationships with family and friends, and pursue life goals without the barriers associated with mental health issues. <br><br>
+
+					The Wounded Warrior Project helps soldiers and their families with healing of the mind as well as the body through personal and economic empowerment. Please join the UVA community in supporting all wounded warriors by donating to this great cause. 
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
